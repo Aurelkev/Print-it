@@ -1,3 +1,4 @@
+
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -20,21 +21,30 @@ let actualSlider = 0;
 
 const arrowLeft = document.querySelector('.arrow_left')
 const arrowRight = document.querySelector('.arrow_right')
+const bannerImg = document.querySelector('.banner-img');
 
 
-arrowLeft.addEventListener('click', function () {
+function showSlide() {
+    const slide = slides[actualSlider];
+    bannerImg.src = `./assets/images/slideshow/${slide.image}`;
+    console.log(`Image affichée : ${slide.image}`);
+  }
+
+  arrowLeft.addEventListener('click', function () {
     actualSlider--;
-    console.log(actualSlider)
-	if (actualSlider < -(slides.length-1)) {
-		actualSlider = 0;
-	}	
-});
+    if (actualSlider < 0) {
+      actualSlider = 3;
+    }
+    showSlide();
+  });
 
-arrowRight.addEventListener('click', function () {
+  arrowRight.addEventListener('click', function () {
     actualSlider++;
-    console.log(actualSlider)
-	if (actualSlider > (slides.length-1)) {
-		actualSlider = 0;
-	}	
-});
+    if (actualSlider >= slides.length) {
+      actualSlider = 0;
+    }
+    showSlide();
+  });
 
+  // Initialisation
+  showSlide();
