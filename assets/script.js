@@ -28,7 +28,7 @@ const dotsContainer = document.querySelector('.dots');
 //Function to create dots for each slide
 function createDots() {
 	// Create dots for each slides
-	slides.forEach((slide, index) => {
+	slides.forEach((slide) => {
 		const dot = document.createElement('div');
 		dot.classList.add('dot');
 		// Add dot to the container
