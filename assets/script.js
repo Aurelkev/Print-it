@@ -23,6 +23,7 @@ const arrowLeft = document.querySelector('.arrow_left')
 const arrowRight = document.querySelector('.arrow_right')
 const bannerImg = document.querySelector('.banner-img');
 const bannerTagline = document.querySelector('.banner-tagline');
+const dots = document.querySelectorAll('.dot');
 
 // Function to show slides
 function showSlide() {
@@ -30,6 +31,17 @@ function showSlide() {
 	bannerImg.src = `./assets/images/slideshow/${slide.image}`;
 	bannerTagline.innerHTML = slide.tagLine;
 	console.log(`Image affichée : ${slide.image}`);
+	updateDots();
+}
+
+// Function to updateDots
+function updateDots() {
+    // Remove 'dot_selected' from each dot
+    dots.forEach(dot => {
+      dot.classList.remove('dot_selected');
+    });
+    // Apply the class "dot_selected" at the dot selected by the actual slider
+    dots[actualSlider].classList.add('dot_selected');
 }
 
 // Event Listener for left arrow
@@ -50,5 +62,5 @@ arrowRight.addEventListener('click', function () {
 	showSlide();
 });
 
-// Initialisation
+// Init
 showSlide();
