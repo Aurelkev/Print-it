@@ -23,7 +23,18 @@ const arrowLeft = document.querySelector('.arrow_left')
 const arrowRight = document.querySelector('.arrow_right')
 const bannerImg = document.querySelector('.banner-img');
 const bannerTagline = document.querySelector('.banner-tagline');
-const dots = document.querySelectorAll('.dot');
+const dotsContainer = document.querySelector('.dots');
+
+//Function to create dots for each slide
+function createDots() {
+	// Create dots for each slides
+	slides.forEach((slide, index) => {
+		const dot = document.createElement('div');
+		dot.classList.add('dot');
+		// Add dot to the container
+		dotsContainer.appendChild(dot);
+	});
+}
 
 // Function to show slides
 function showSlide() {
@@ -36,16 +47,18 @@ function showSlide() {
 
 // Function to updateDots
 function updateDots() {
-    // Remove 'dot_selected' from each dot
-    dots.forEach(dot => {
-      dot.classList.remove('dot_selected');
-    });
-    // Apply the class "dot_selected" at the dot selected by the actual slider
-    dots[actualSlider].classList.add('dot_selected');
+	const dots = document.querySelectorAll('.dots .dot');
+	// Remove 'dot_selected' from each dot
+	dots.forEach(dot => {
+		dot.classList.remove('dot_selected');
+	});
+	// Apply the class "dot_selected" at the dot selected by the actual slider
+	dots[actualSlider].classList.add('dot_selected');
 }
 
 // Event Listener for left arrow
 arrowLeft.addEventListener('click', function () {
+	console.log(`Click on the Left arrow !`);
 	actualSlider--;
 	if (actualSlider < 0) {
 		actualSlider = 3;
@@ -55,6 +68,7 @@ arrowLeft.addEventListener('click', function () {
 
 // Event Listener for right arrow
 arrowRight.addEventListener('click', function () {
+	console.log(`Click on the Right arrow !`);
 	actualSlider++;
 	if (actualSlider >= slides.length) {
 		actualSlider = 0;
@@ -63,4 +77,6 @@ arrowRight.addEventListener('click', function () {
 });
 
 // Init
+createDots();
 showSlide();
+
