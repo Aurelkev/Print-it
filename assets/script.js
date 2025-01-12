@@ -60,7 +60,7 @@ arrowLeft.addEventListener('click', function () {
 	console.log(`Click on the Left arrow !`);
 	actualSlider--;
 	if (actualSlider < 0) {
-		actualSlider = 3;
+		actualSlider = slides.length - 1;
 	}
 	showSlide();
 });
